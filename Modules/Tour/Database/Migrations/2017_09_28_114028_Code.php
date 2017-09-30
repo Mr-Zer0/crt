@@ -15,10 +15,13 @@ class Code extends Migration
     {
         Schema::create('code', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('tour_number');
+            $table->date('date_from')->nullable();
+            $table->date('date_to')->nullable();
+            $table->string('type', 3);
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->text('body');
-            $table->boolean('published')->default(false);
+            $table->string('attention')->nullable();
+            $table->string('country');
             $table->unsignedInteger('user_id');
             $table->timestamps();
 
@@ -33,6 +36,6 @@ class Code extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('code');
     }
 }
