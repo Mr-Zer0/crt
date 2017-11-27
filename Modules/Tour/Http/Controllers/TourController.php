@@ -3,18 +3,20 @@
 namespace Modules\Tour\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Modules\Tour\Entities\Tour;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class TourController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return view('tour::index');
+        return view('tour::index', ['tours' => Tour::all()]);
     }
 
     /**
@@ -33,6 +35,13 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validator($request->all())->validate();
+
+        Tour::createTour($request);
+
+        // TODO : add event
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -68,5 +77,30 @@ class TourController extends Controller
      */
     public function destroy()
     {
+    }
+
+     /**
+     * Get a validator for an incoming user create request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data, $id = null)
+    {
+        $rules = [
+            'title'         => 'required|string|max:255',
+            'client_name'   => 'required|string|max:255',
+            'inquiry_date'  => 'date_format:dd m, YY',
+            'date_from'     => 'date|after:inquiry_date,format:dd m, YY',
+            'date_to'       => 'date|after:date_from,format:dd m, YY',
+            'adult'         => 'required|integer|min:1',
+            'child'         => 'required|integer|min:0',
+            'infant'        => 'required|integer|min:0',
+            'status'        => 'required|string|max:200',
+            'destination'   => 'required|string|max:255',
+            'remark'        => 'string'
+        ];
+
+        return Validator::make($data, $rules);
     }
 }

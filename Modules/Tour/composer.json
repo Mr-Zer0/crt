@@ -1,12 +1,22 @@
 {
-    "name": "nwidart/tour",
-    "description": "",
+    "name": "crt/tour",
+    "description": "Module for tour department",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Yan Naing",
+            "email": "yannaing@crotontravel.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Tour\\Providers\\TourServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
     "autoload": {
         "psr-4": {
             "Modules\\Tour\\": ""

@@ -1,7 +1,7 @@
 {
     "name": "Tour",
     "alias": "tour",
-    "description": "",
+    "description": "This module is for tour department",
     "keywords": [],
     "active": 1,
     "order": 0,

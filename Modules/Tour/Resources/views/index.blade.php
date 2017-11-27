@@ -1,9 +1,17 @@
-@extends('layouts.app')
+@extends('tour::layout')
 
-@section('content')
-    <h1>Hello World</h1>
+@section('module')
+    
+    <div class="container">
+        @if (isset($tours) && $tours->isNotEmpty())
 
-    <p>
-        This view is loaded from module: {!! config('tour.name') !!}
-    </p>
-@stop
+        
+
+        @else
+
+        <p>No tour has been created yet !</p>
+
+        @endif
+    </div> <!-- end of container -->
+
+@endsection
