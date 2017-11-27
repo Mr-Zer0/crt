@@ -1,0 +1,41 @@
+
+
+#app {
+    
+}
+
+main, header {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+    main, header {
+        padding-left: 0;
+    }
+}
+       
+
+#logo {
+    background: url('../images/logo.png') no-repeat;
+    height: 77px;
+    width: 232px;
+    margin: 40px auto;
+    text-indent: -999999px;
+}
+
+#users, #tours {
+    padding: 25px;
+}
+
+.form-error {
+    position: absolute;
+    bottom: 0px;
+    font-size: 0.8em;
+}
+
+.page-info-bar {
+    padding: 15px;
+}
+.page-info-bar h5 {
+    margin: 0;
+}
