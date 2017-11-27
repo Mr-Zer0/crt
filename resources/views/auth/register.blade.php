@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.croton')
 
 @section('content')
 <div class="container">
@@ -60,24 +60,6 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                            <label for="role" class="col-md-4 control-label">User role</label>
-
-                            <div class="col-md-6">
-                                <select id="role" class="form-control" name="role" required>
-                                @foreach($roles as $id => $role)
-                                    <option value="{{$id}}">{{$role}}</option>
-                                @endforeach
-                                </select>
-
-                                @if ($errors->has('role'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-</div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
