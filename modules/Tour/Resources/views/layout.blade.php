@@ -6,7 +6,7 @@
 
 @include('tour::breadcrumb')
 
-<div id="tours">
+<div id="tours" class="module-main">
 
     @yield('module')
 

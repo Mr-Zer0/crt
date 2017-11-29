@@ -24,9 +24,20 @@
                     @endforeach
                 </td>
                 <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-secondary">Edit</a>
-                        <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-secondary">Delete</a>
+                    <div class="btn-group">
+                        <a href="{{ route('users.edit', $user->id) }}" 
+                            class="btn-flat tooltipped" 
+                            data-position="top" 
+                            data-tooltip="Edit">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+
+                        <a href="{{ route('users.destroy', $user->id) }}" 
+                            class="btn-flat tooltipped" 
+                            data-position="top" 
+                            data-tooltip="Delete">
+                            <i class="material-icons">delete</i>
+                        </a>
                     </div>
                 </td>
             </tr>

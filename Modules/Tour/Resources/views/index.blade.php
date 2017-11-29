@@ -24,15 +24,22 @@
                         {{ $tour->tour_duration }}
                     </td>
                     <td>{{ $tour->pax }} Pax</td>
-                    <td class="toolbar">
-                        <ul>
-                            <li class="waves-effect waves-light">
-                                <a class="modal-trigger" href="#{{ $tour->code }}"><i class="material-icons left">visibility</i></a>
-                            </li>
-                            <li class="waves-effect waves-light">
-                                <a href="{{ route('tours.edit', $tour->id) }}"><i class="material-icons left">mode_edit</i></a>
-                            </li>
-                        </ul>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#{{ $tour->code }}" 
+                                class="btn-flat tooltipped modal-trigger" 
+                                data-position="top" 
+                                data-tooltip="View Detail">
+                                <i class="material-icons">visibility</i>
+                            </a>
+
+                            <a href="{{ route('tours.edit', $tour->id) }}" 
+                                class="btn-flat tooltipped" 
+                                data-position="top" 
+                                data-tooltip="Delete">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </div>
 
                         <div class="modal modal-fixed-footer" id="{{ $tour->code }}">
                             <div class="modal-content">

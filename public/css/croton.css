@@ -1,11 +1,5 @@
-
-
-#app {
-    
-}
-
 main, header {
-    padding-left: 300px;
+    padding-left: 270px;
 }
 
 @media only screen and (max-width : 992px) {
@@ -13,7 +7,15 @@ main, header {
         padding-left: 0;
     }
 }
-       
+
+.side-nav {
+    width: 270px;
+}
+
+.nav-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+}  
 
 #logo {
     background: url('../images/logo.png') no-repeat;
@@ -23,14 +25,19 @@ main, header {
     text-indent: -999999px;
 }
 
-#users, #tours {
-    padding: 25px;
+.module-main {
+    padding: 25px 20px;
 }
 
 .form-error {
     position: absolute;
     bottom: 0px;
     font-size: 0.8em;
+}
+
+.btn-group a {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .page-info-bar {
