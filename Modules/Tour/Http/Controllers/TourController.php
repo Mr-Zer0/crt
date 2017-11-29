@@ -41,7 +41,7 @@ class TourController extends Controller
 
         // TODO : add event
 
-        return redirect()->route('users.index');
+        return redirect()->route('tours.index');
     }
 
     /**
@@ -57,9 +57,9 @@ class TourController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit(Tour $tour)
     {
-        return view('tour::edit');
+        return view('tour::create', compact('tour'));
     }
 
     /**
@@ -67,16 +67,24 @@ class TourController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Tour $tour)
     {
+        $this->validator($request->all())->validate();
+
+        $tour->updateTour($request);
+
+        # TODO : add event
+
+        return redirect()->route('tours.index');
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(User $user)
     {
+        $user->delete();
     }
 
      /**

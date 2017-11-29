@@ -8,6 +8,8 @@ use Carbon\Carbon;
 
 class Tour extends Model
 {
+    # TODO : Make Repository Pattern
+
     protected $fillable = [
         'title',
         'client_name',
@@ -22,6 +24,12 @@ class Tour extends Model
         'destination',
         'remark',
         'user_id'
+    ];
+
+    protected $dates = [
+        'inquiry_date',
+        'date_from',
+        'date_to'
     ];
 
     /**
@@ -61,7 +69,27 @@ class Tour extends Model
 
     public function updateTour(Request $request)
     {
+        $this->makeData($request->all(), false);
 
+        return $this->save();
+    }
+
+    public function getInquiryDateAttribute()
+    {
+        $carbon = Carbon::createFromFormat('Y-m-d', $this->attributes['inquiry_date']);
+        return $carbon->format('j F Y');
+    }
+
+    public function getDateFromAttribute()
+    {
+        $carbon = Carbon::createFromFormat('Y-m-d', $this->attributes['date_from']);
+        return $carbon->format('j F Y');
+    }
+
+    public function getDateToAttribute()
+    {
+        $carbon = Carbon::createFromFormat('Y-m-d', $this->attributes['date_to']);
+        return $carbon->format('j F Y');
     }
 
     public function setInquiryDateAttribute($data)
@@ -79,9 +107,16 @@ class Tour extends Model
         $this->attributes['date_to'] = Carbon::createFromFormat('j F Y', $data)->toDateTimeString();
     }
 
-    protected function makeData($data)
+    protected function makeData($data, $create = true)
     {
-        $this->tour_code = $this->makeCode();
+        # TODO - Add updated by data field
+        
+        if($create)
+        {
+            $this->tour_code = $this->makeCode();
+            $this->user_id = auth()->user()->id;
+        }
+
         $this->title = $data['title'];
         $this->client_name = $data['client_name'];
         $this->adult = $data['adult'];
@@ -93,7 +128,6 @@ class Tour extends Model
         $this->inquiry_date = $data['inquiry_date'];
         $this->date_from = $data['date_from'];
         $this->date_to = $data['date_to'];
-        $this->user_id = auth()->user()->id;
     }
 
     protected function makeCode()

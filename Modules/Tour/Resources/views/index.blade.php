@@ -30,7 +30,7 @@
                                 <a class="modal-trigger" href="#{{ $tour->code }}"><i class="material-icons left">visibility</i></a>
                             </li>
                             <li class="waves-effect waves-light">
-                                <a><i class="material-icons left">mode_edit</i></a>
+                                <a href="{{ route('tours.edit', $tour->id) }}"><i class="material-icons left">mode_edit</i></a>
                             </li>
                         </ul>
 

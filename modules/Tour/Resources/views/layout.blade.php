@@ -1,6 +1,6 @@
 @extends('layouts.croton')
 
-@section('page_title', config('tour.name'))
+@section('page_title', config('tour.title'))
 
 @section('content')
 

@@ -2,7 +2,7 @@
 
 @section('module')
 <div class="container">
-    
+
     @if (isset($tour))
         {{ Form::model($tour, ['route' => ['tours.update', $tour->id], 'class' => 'form-horizontal', 'method' => 'put']) }}
     @else
@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="col s12 input-field">
-                {{ Form::text('title', $value = '', ['class' => 'validate']) }}
+                {{ Form::text('title', $value = null, ['class' => 'validate']) }}
                 {{ Form::label('title', 'Tour Name') }}
 
                 @if ($errors->has('title'))
@@ -24,7 +24,7 @@
 
         <div class="row">
             <div class="col s12 input-field">
-                {{ Form::text('client_name', $value = '', ['class' => 'validate']) }}
+                {{ Form::text('client_name', $value = null, ['class' => 'validate']) }}
                 {{ Form::label('client_name', 'Client Name') }}
 
                 @if ($errors->has('client_name'))
@@ -37,7 +37,7 @@
 
         <div class="row">
             <div class="input-field col s12">
-                {{ Form::text('inquiry_date', $value = '', ['class' => 'datepicker']) }}
+                {{ Form::text('inquiry_date', $value = null, ['class' => 'datepicker']) }}
                 {{ Form::label('inquiry_date', 'Inquiry Date') }}
 
                 @if ($errors->has('inquiry_date'))
@@ -50,7 +50,7 @@
 
         <div class="row">
             <div class="input-field col s6">
-                {{ Form::text('date_from', $value = '', ['class' => 'datepicker']) }}
+                {{ Form::text('date_from', $value = null, ['class' => 'datepicker']) }}
                 {{ Form::label('date_from', 'Travel Date From') }}
 
                 @if ($errors->has('date_from'))
@@ -61,7 +61,7 @@
             </div> <!-- end of input-field col s12 -->
 
             <div class="input-field col s6">
-                {{ Form::text('date_to', $value = '', ['class' => 'datepicker']) }}
+                {{ Form::text('date_to', $value = null, ['class' => 'datepicker']) }}
                 {{ Form::label('date_to', 'Travel Date To') }}
 
                 @if ($errors->has('date_to'))
@@ -74,7 +74,7 @@
 
         <div class="row">
             <div class="input-field col s4">
-                {{ Form::number('adult', $value = 1, ['class' => 'validate']) }}
+                {{ Form::number('adult', $value = null, ['class' => 'validate']) }}
                 {{ Form::label('adult', 'Adult') }}
 
                 @if ($errors->has('adult'))
@@ -85,7 +85,7 @@
             </div> <!-- end of input-field col s4 -->
 
             <div class="input-field col s4">
-                {{ Form::number('child', $value = 0) }}
+                {{ Form::number('child', $value = null) }}
                 {{ Form::label('child', 'Child') }}
 
                 @if ($errors->has('child'))
@@ -96,7 +96,7 @@
             </div> <!-- end of input-field col s4 -->
 
             <div class="input-field col s4">
-                {{ Form::number('infant', $value = 0) }}
+                {{ Form::number('infant', $value = null) }}
                 {{ Form::label('infant', 'Infant') }}
 
                 @if ($errors->has('infant'))
@@ -124,7 +124,7 @@
 
         <div class="row">
             <div class="col s12 input-field">
-                {{ Form::text('destination', $value = '', ['class' => 'validate']) }}
+                {{ Form::text('destination', $value = null, ['class' => 'validate']) }}
                 {{ Form::label('destination', 'Destinations') }}
 
                 @if ($errors->has('destination'))
