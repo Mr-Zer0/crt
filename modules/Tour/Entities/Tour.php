@@ -24,12 +24,6 @@ class Tour extends Model
         'user_id'
     ];
 
-    protected $dates = [
-        'date_from',
-        'date_to',
-        'inquiry_date'
-    ];
-
     /**
      * Accessor for tour code
      *
@@ -40,31 +34,79 @@ class Tour extends Model
         return 'CRT' . $this->tour_code;
     }
 
+    public function getTourDurationAttribute()
+    {
+        $date_from = (Carbon::parse($this->date_from))->toFormattedDateString();
+        $date_to = (Carbon::parse($this->date_to))->toFormattedDateString();
+
+        return $date_from . ' - ' . $date_to;
+    }
+
     /**
      * Accessor for total number of pax
      *
      * @return string
      */
-    public function getPaxAttriburte()
+    public function getPaxAttribute()
     {
         return $this->adult + $this->child + $this->infant;
     }
 
-    public static function createTour(Request $request)
+    public function createTour(Request $request)
     {
-        (new static)->makeData($request->all());
+        $this->makeData($request->all());
+
+        return $this->save();
     }
 
-    public static function updateTour(Request $request)
+    public function updateTour(Request $request)
     {
 
+    }
+
+    public function setInquiryDateAttribute($data)
+    {
+        $this->attributes['inquiry_date'] = Carbon::createFromFormat('j F Y', $data)->toDateTimeString();
+    }
+
+    public function setDateFromAttribute($data)
+    {
+        $this->attributes['date_from'] = Carbon::createFromFormat('j F Y', $data)->toDateTimeString();
+    }
+
+    public function setDateToAttribute($data)
+    {
+        $this->attributes['date_to'] = Carbon::createFromFormat('j F Y', $data)->toDateTimeString();
     }
 
     protected function makeData($data)
-    {dd($data);
-        $data['tour_code'] = (is_null(Tour::max('tour_code'))) ? 17180 : date('y') . Tour::max('tour_code') + 1;
-
+    {
+        $this->tour_code = $this->makeCode();
         $this->title = $data['title'];
         $this->client_name = $data['client_name'];
+        $this->adult = $data['adult'];
+        $this->infant = $data['infant'];
+        $this->child = $data['child'];
+        $this->status = $data['status'];
+        $this->destination = $data['destination'];
+        $this->remark = $data['destination'];
+        $this->inquiry_date = $data['inquiry_date'];
+        $this->date_from = $data['date_from'];
+        $this->date_to = $data['date_to'];
+        $this->user_id = auth()->user()->id;
+    }
+
+    protected function makeCode()
+    {
+        $tourCode = Tour::max('tour_code');
+        $year = substr($tourCode, 0, 2);
+        $number = substr($tourCode, -3);
+
+        if ($year == date('y'))
+        {
+            return $tourCode += 1;
+        }
+        
+        return date('y') . 001;
     }
 }

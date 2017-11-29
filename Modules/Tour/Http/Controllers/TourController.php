@@ -37,7 +37,7 @@ class TourController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        Tour::createTour($request);
+        (new Tour)->createTour($request);
 
         // TODO : add event
 
@@ -90,9 +90,9 @@ class TourController extends Controller
         $rules = [
             'title'         => 'required|string|max:255',
             'client_name'   => 'required|string|max:255',
-            'inquiry_date'  => 'date_format:dd m, YY',
-            'date_from'     => 'date|after:inquiry_date,format:dd m, YY',
-            'date_to'       => 'date|after:date_from,format:dd m, YY',
+            'inquiry_date'  => 'date',
+            'date_from'     => 'date|after:inquiry_date',
+            'date_to'       => 'date|after:date_from',
             'adult'         => 'required|integer|min:1',
             'child'         => 'required|integer|min:0',
             'infant'        => 'required|integer|min:0',

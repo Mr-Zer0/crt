@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'name' => 'Tour',
+    'name'  => 'Tour',
+    'title' => 'Tour Management',
     'status'    => [
         'propose'   => 'Propose',
         'follow'    => 'Follow Up',

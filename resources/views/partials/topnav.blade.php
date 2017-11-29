@@ -19,6 +19,11 @@
 
 <nav>
     <div class="nav-wrapper">
+
+        <div class="brand-logo">
+            @yield('page_title')
+        </div> <!-- end of brand-logo -->
+        
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
                 <a class="dropdown-button" href="#!" data-activates="dropdown1">

@@ -1,5 +1,7 @@
 @extends('layouts.croton')
 
+@section('page_title', config('tour.name'))
+
 @section('content')
 
 @include('tour::breadcrumb')
