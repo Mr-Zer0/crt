@@ -1,3 +1,5 @@
+@if (auth()->check())
+
 <ul id="dropdown1" class="dropdown-content">
     <li>
         <a href="{{ route('users.edit', auth()->user()->id) }}">
@@ -17,6 +19,7 @@
     </li>
 </ul> <!-- end of dropdown1 -->
 
+@endif
 <nav class="cyan">
     <div class="nav-wrapper">
 
