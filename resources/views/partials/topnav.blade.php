@@ -26,8 +26,19 @@
         
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
-                <a class="dropdown-button" href="#!" data-activates="dropdown1"  data-beloworigin="true" data-constrainwidth="false">
-                    Hi ! {{ auth()->user()->name }} <i class="material-icons right">face</i></a>
+                @if (auth()->check())
+                    <a class="dropdown-button" 
+                        href="#!" 
+                        data-activates="dropdown1"  
+                        data-beloworigin="true" 
+                        data-constrainwidth="false">
+                            Hi ! {{ auth()->user()->name }} <i class="material-icons right">face</i>
+                    </a>
+                @else
+
+                    <a href="{{ route('login') }}">Login</a>
+
+                @endif
             </li>
         </ul>
     </div> <!-- End of nav-wrapper -->
