@@ -17,7 +17,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/croton.css') }}"  media="screen,projection"/>
 </head>
-<body>
+<body class="cyan">
 
     @yield('content')
 

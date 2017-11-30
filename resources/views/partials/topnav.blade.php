@@ -17,7 +17,7 @@
     </li>
 </ul> <!-- end of dropdown1 -->
 
-<nav>
+<nav class="cyan">
     <div class="nav-wrapper">
 
         <div class="brand-logo">
