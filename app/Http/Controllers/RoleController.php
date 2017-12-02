@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -16,8 +17,9 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::where('name', '!=', 'sudo')->get();
+        $permissions = Permission::all();
 
-        return view('roles/index', compact('roles'));
+        return view('roles/index', compact('roles', 'permissions'));
     }
 
     /**
@@ -102,6 +104,21 @@ class RoleController extends Controller
         //
     }
 
+    public function managePermission($id)
+    {
+        $role = Role::findOrFail($id);
+        $permissions = Permission::all()->chunk(6);
+        
+        return view('permissions.form', compact('role', 'permissions'));
+    }
+
+    public function makePermission(Request $request, $id)
+    {
+        $role = Role::findOrFail($id);
+        $role->syncPermissions($request->permissions);
+        
+        return redirect()->route('roles.index');
+    }
 
     /**
      * Create a new user instance after a valid registration.

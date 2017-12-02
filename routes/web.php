@@ -19,7 +19,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('users', 'UserController');
 
+    Route::get('roles/{id}/manage-permission', [
+        'as' => 'roles.managepermission', 
+        'uses' => 'RoleController@managePermission'
+        ]);
+
+    Route::post('roles/{id}/make-permission', [
+        'as'    => 'roles.makepermission',
+        'uses'  => 'RoleController@makePermission'
+        ]);
+
     Route::resource('roles', 'RoleController');
+
+    Route::resource('tours', '\Modules\Tour\Http\Controllers\TourController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,6 +1,6 @@
-@extends('layouts.croton')
+@extends('roles.layout')
 
-@section('content')
+@section('module')
 
 <div class="container">
     <table class="table table-bordered">
