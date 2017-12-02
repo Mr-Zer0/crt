@@ -20,10 +20,11 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name'      => 'Owner',
-            'email'     => 'owner@crotontravel.com',
-            'password'  => bcrypt('owner123'),
+            'name'      => 'Hein Thant',
+            'email'     => 'hein@crotontravel.com',
+            'password'  => bcrypt('hein123'),
             'profile'   => ''
         ]);
+
     }
 }
