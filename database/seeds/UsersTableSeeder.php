@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,6 +12,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $permissions = array_flatten(Permission::all(['name'])->toArray());
+
         // Add exceptional user
         DB::table('users')->insert([
             'name'      => 'Super User',
@@ -19,12 +22,15 @@ class UsersTableSeeder extends Seeder
             'profile'   => ''
         ]);
 
-        DB::table('users')->insert([
+        (\App\User::find(1))->givePermissionTo($permissions);
+
+        $ht = DB::table('users')->insert([
             'name'      => 'Hein Thant',
             'email'     => 'hein@crotontravel.com',
             'password'  => bcrypt('hein123'),
             'profile'   => ''
         ]);
 
+        (\App\User::find(2))->givePermissionTo($permissions);
     }
 }

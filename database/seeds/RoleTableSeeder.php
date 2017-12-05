@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleTableSeeder extends Seeder
 {
@@ -14,7 +15,10 @@ class RoleTableSeeder extends Seeder
     {
         app()['cache']->forget('spatie.permission.cache');
 
-        Role::create(['name' => 'System Admins']);
-        Role::create(['name' => 'Tours']);
+        $admin = Role::create(['name' => 'System Admins']);
+        $admin->givePermissionTo(array_flatten(Permission::all(['name'])->toArray()));
+
+        $tour = Role::create(['name' => 'Tours']);
+        $tour->givePermissionTo(array_flatten(Permission::where('name', 'LIKE', '%tours')->get(['name'])->toArray()));
     }
 }

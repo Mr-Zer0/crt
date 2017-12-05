@@ -37,7 +37,10 @@ class TourDatabaseSeeder extends Seeder
             Permission::create(['name' => $permission]);
         }
 
-        $su = \App\User::where('email', 'su@superuser.com')->first();
-        $su->givePermissionTo($permissions);
+        (\App\User::find(1))->givePermissionTo($permissions);
+
+        (\App\User::find(2))->givePermissionTo($permissions);
+
+        (\Spatie\Permission\Models\Role::find(1))->givePermissionTo($permissions);
     }
 }
