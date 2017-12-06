@@ -45,5 +45,5 @@
         </tbody>
     </table>
 
-
+{{ $users->links('partials.pagination') }}
 @endsection

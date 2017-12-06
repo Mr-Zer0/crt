@@ -16,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users/index', ['users' => User::where('email', '!=', 'su@superuser.com')->get()]);
+        $users = User::where('email', '!=', 'su@superuser.com')->paginate(1);
+
+        return view('users/index', compact('users'));
     }
 
     /**
