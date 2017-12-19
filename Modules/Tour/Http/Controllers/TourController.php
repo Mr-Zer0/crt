@@ -87,6 +87,16 @@ class TourController extends Controller
         $user->delete();
     }
 
+    public function addDetail()
+    {
+
+    }
+
+    public function saveDetail()
+    {
+
+    }
+
      /**
      * Get a validator for an incoming user create request.
      *
